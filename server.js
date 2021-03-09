@@ -2,6 +2,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const uniqid = require('uniqid');
 
 // Sets up the Express App
 const app = express();
@@ -35,12 +36,23 @@ app.get('/notes', (req, res) => res.sendFile(notesHtmlPath));
 app.get('*', (req, res) => res.sendFile(indexHtmlPath));
 
 app.post('/api/notes', (req, res) => {
-    //TODO: validate req
-    //TODO: unique id
+    const { title, text } = req.body;
+
+    if (!title || !text) {
+        res.status(400);
+        res.send('Title and text are required.');
+        return;
+    }
+
+    const newNote = {
+        title,
+        text,
+        id: uniqid()
+    };
 
     const notesText = fs.readFileSync(dbFilePath);
     const notes = JSON.parse(notesText);
-    notes.push(req.body);
+    notes.push(newNote);
     const updatedNotes = JSON.stringify(notes, null, '\t');
     try {
         fs.writeFileSync(dbFilePath, updatedNotes);
@@ -48,7 +60,7 @@ app.post('/api/notes', (req, res) => {
         console.log(error);
     }
     console.log('Note added!');
-    res.json(req.body);
+    res.json(newNote);
 });
 
 // Starts the server to begin listening
