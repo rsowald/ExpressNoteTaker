@@ -18,6 +18,9 @@ const indexHtmlPath = path.join(__dirname, 'public', 'index.html');
 
 // Routes
 
+// Serving assets statically
+app.use(express.static("assets"));
+
 // Returns all notes
 app.get('/api/notes', (req, res) => {
     res.header("Content-Type", 'application/json');
