@@ -15,11 +15,12 @@ app.use(express.json());
 const dbFilePath = path.join(__dirname, 'db', 'db.json');
 const notesHtmlPath = path.join(__dirname, 'public', 'notes.html');
 const indexHtmlPath = path.join(__dirname, 'public', 'index.html');
+const staticPath = path.join(__dirname, 'public');
 
 // Routes
 
 // Serving assets statically
-app.use(express.static("assets"));
+app.use(express.static(staticPath));
 
 // Returns all notes
 app.get('/api/notes', (req, res) => {
