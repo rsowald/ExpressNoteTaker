@@ -99,7 +99,13 @@ const handleNoteDelete = (e) => {
 // Sets the activeNote and displays it
 const handleNoteView = (e) => {
   e.preventDefault();
-  activeNote = JSON.parse(e.target.getAttribute('data-note'));
+
+  // If trash can is clicked, ignore this handler as it will propagate to the delete handler
+  if (e?.target.classList.contains('delete-note')) {
+    return;
+  }
+
+  activeNote = JSON.parse(e.currentTarget.getAttribute('data-note'));
   renderActiveNote();
 };
 
