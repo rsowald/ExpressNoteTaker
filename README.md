@@ -3,6 +3,8 @@
   ![License](https://img.shields.io/badge/license-MIT-green.svg)
   
   ## Description
+
+  [View deployed application](https://mighty-headland-38310.herokuapp.com/)
   
   This memorandum or note application using an express server to read and display saved notes, create new notes, and delete notes that are no longer needed. It uses different routes to get, post, and delete and also includes a static route to serve the CSS and front-end javascript.
   
@@ -23,10 +25,12 @@
   ## Usage
   1. Navigate to url
   1. Push button to get started
+  ![landing page](public/assets/screenshots/landing_page.jpg)
   1. Enter a new note title and message
   1. Push the save button at the top
   1. Recall saved notes by clicking on the note tile in left column
   1. Push delete button next to any note you would like to delete
+  ![notes page](public/assets/screenshots/notes_page.jpg)
   
   
   ## Future
